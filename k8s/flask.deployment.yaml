@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # the name gets displayed -> kubectl get deployment
+  # name and labels dont need to match here
+  name: flask-deployment
+  namespace: default
+  labels:
+    app: flask-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-deploy
+  template:
+    metadata:
+      labels:
+        app: flask-deploy
+    spec:
+      containers:
+      - name: flask-pod
+        image: app_server_flask
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "2"
+        ports:
+        - containerPort: 5001

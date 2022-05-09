@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-deployment
+  namespace: default
+  labels:
+    app: express-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-deploy
+  template:
+    metadata:
+      labels:
+        app: express-deploy
+    spec:
+      containers:
+      - name: express-pod
+        image: app_server_express
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "2"
+        ports:
+        - containerPort: 5002

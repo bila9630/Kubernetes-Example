@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  client:
+    # name that you want to give to the image
+    image: app_client
+    build:
+      # context shows where to find the dockerfile
+      context: ./client/
+      dockerfile: Dockerfile
+    ports:
+    - "3000:3000"
+    networks:
+      - app-network
+    # controls the order of startup and shutdown
+    depends_on:
+      - server_flask
+      - server_express
+
+  server_flask:
+    image: app_server_flask
+    build: 
+      context: ./server_flask/
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+  
+  server_express:
+    image: app_server_express
+    build:
+      context: ./server_express/
+    ports:
+      - "5002:5002"
+    networks:
+      - app-network
+    # define environment variable inside the container
+    environment:
+      - APP_VERSION=1.0
+
+networks:
+  app-network:
+    driver: bridge

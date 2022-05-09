@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+  namespace: default
+  labels:
+    app: client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-deploy
+  template:
+    metadata:
+      labels:
+        app: client-deploy
+    spec:
+      containers:
+      - name: client-pod
+        image: app_client
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "800Mi"
+            cpu: "2"
+        ports:
+        - containerPort: 3000
