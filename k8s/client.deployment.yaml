@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: client-pod
-        image: app_client
-        imagePullPolicy: Never
+        image: bila9630/app_client_k8s
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "800Mi"

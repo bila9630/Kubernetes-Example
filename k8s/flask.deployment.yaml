@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
       - name: flask-pod
-        image: app_server_flask
-        imagePullPolicy: Never
+        image: bila9630/app_server_flask_k8s
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "800Mi"

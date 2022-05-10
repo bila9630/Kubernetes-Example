@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: express-pod
-        image: app_server_express
-        imagePullPolicy: Never
+        image: bila9630/app_server_express_k8s
+        imagePullPolicy: Always
         resources:
           limits:
             memory: "800Mi"
